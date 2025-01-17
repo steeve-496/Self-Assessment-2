@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Detective Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <header>
+            <h1>Cyber Detective Game</h1>
+            <p>Test your cybersecurity skills by solving these challenges!</p>
+            <div class="scoreboard">
+                <span>Score: <span id="score">0</span></span>
+                <div class="progress-bar">
+                    <div id="progress"></div>
+                </div>
+            </div>
+        </header>
+
+        <main id="game">
+            <!-- Scenario 1 -->
+            <div class="scenario" data-scenario="1">
+                <h2>Scenario 1: Antivirus Threat Detection</h2>
+                <p>Select the suspicious file:</p>
+                <div class="options">
+                    <button onclick="checkAnswer(this, true, 1)">File1.exe (Unknown Source)</button>
+                    <button onclick="checkAnswer(this, false, 1)">Report.pdf</button>
+                    <button onclick="checkAnswer(this, false, 1)">Image.jpg</button>
+                </div>
+            </div>
+
+            <!-- Scenario 2 -->
+            <div class="scenario hidden" data-scenario="2">
+                <h2>Scenario 2: Firewall Logs</h2>
+                <p>Spot the unauthorized access attempt:</p>
+                <pre>
+192.168.1.1 - Allowed
+172.16.0.2 - Blocked
+10.0.0.5 - Blocked (Suspicious)
+                </pre>
+                <div class="options">
+                    <button onclick="checkAnswer(this, false, 2)">192.168.1.1</button>
+                    <button onclick="checkAnswer(this, false, 2)">172.16.0.2</button>
+                    <button onclick="checkAnswer(this, true, 2)">10.0.0.5</button>
+                </div>
+            </div>
+
+            <!-- Scenario 3 -->
+            <div class="scenario hidden" data-scenario="3">
+                <h2>Scenario 3: Phishing Links</h2>
+                <p>Clicking "here" will result in hacking. Is the email legitimate?</p>
+                <blockquote>
+                    <p>"Click <a href="#" onclick="triggerHack()">here</a> to reset your password."</p>
+                    <small>support@fakebank.com</small>
+                </blockquote>
+                <div class="options">
+                    <button onclick="checkAnswer(this, false, 3)">Legitimate</button>
+                    <button onclick="checkAnswer(this, true, 3)">Phishing</button>
+                </div>
+            </div>
+
+            <!-- Add 7 more scenarios -->
+            <div class="scenario hidden" data-scenario="4">
+                <h2>Scenario 4: Password Strength</h2>
+                <p>Which password is the strongest?</p>
+                <div class="options">
+                    <button onclick="checkAnswer(this, false, 4)">123456</button>
+                    <button onclick="checkAnswer(this, true, 4)">P@ssw0rd!2023</button>
+                    <button onclick="checkAnswer(this, false, 4)">password123</button>
+                </div>
+            </div>
+
+            <div class="scenario hidden" data-scenario="5">
+                <h2>Scenario 5: Safe Browsing</h2>
+                <p>You receive a pop-up on a website offering free gift cards. What do you do?</p>
+                <div class="options">
+                    <button onclick="checkAnswer(this, false, 5)">Click the pop-up</button>
+                    <button onclick="checkAnswer(this, false, 5)">Enter your email address</button>
+                    <button onclick="checkAnswer(this, true, 5)">Ignore and close the pop-up</button>
+                </div>
+            </div>
+
+            <div class="scenario hidden" data-scenario="6">
+                <h2>Scenario 6: Device Security</h2>
+                <p>Your device prompts you for a software update. What should you do?</p>
+                <div class="options">
+                    <button onclick="checkAnswer(this, false, 6)">Ignore the update</button>
+                    <button onclick="checkAnswer(this, true, 6)">Install updates from a trusted source</button>
+                    <button onclick="checkAnswer(this, false, 6)">Download updates from random sites</button>
+                </div>
+            </div>
+
+            <div class="scenario hidden" data-scenario="7">
+                <h2>Scenario 7: Social Engineering</h2>
+                <p>A caller claims to be your bank and asks for your PIN. What should you do?</p>
+                <div class="options">
+                    <button onclick="checkAnswer(this, false, 7)">Provide the PIN</button>
+                    <button onclick="checkAnswer(this, false, 7)">Hang up and ignore</button>
+                    <button onclick="checkAnswer(this, true, 7)">Verify the caller’s identity via official channels</button>
+                </div>
+            </div>
+
+            <div class="scenario hidden" data-scenario="8">
+                <h2>Scenario 8: Recognizing Fake Apps</h2>
+                <p>You find an app in the store offering free streaming services. What do you do?</p>
+                <div class="options">
+                    <button onclick="checkAnswer(this, false, 8)">Download the app</button>
+                    <button onclick="checkAnswer(this, true, 8)">Check app reviews and publisher details</button>
+                    <button onclick="checkAnswer(this, false, 8)">Install and test</button>
+                </div>
+            </div>
+
+            <div class="scenario hidden" data-scenario="9">
+                <h2>Scenario 9: Public Wi-Fi</h2>
+                <p>You connect to public Wi-Fi. What’s the safest way to browse?</p>
+                <div class="options">
+                    <button onclick="checkAnswer(this, false, 9)">Share sensitive information</button>
+                    <button onclick="checkAnswer(this, true, 9)">Use a VPN</button>
+                    <button onclick="checkAnswer(this, false, 9)">Connect without any precautions</button>
+                </div>
+            </div>
+
+            <div class="scenario hidden" data-scenario="10">
+                <h2>Scenario 10: Email Attachments</h2>
+                <p>You receive an email with an attachment from an unknown sender. What should you do?</p>
+                <div class="options">
+                    <button onclick="checkAnswer(this, true, 10)">Do not open the attachment</button>
+                    <button onclick="checkAnswer(this, false, 10)">Open the attachment to check</button>
+                    <button onclick="checkAnswer(this, false, 10)">Forward it to others</button>
+                </div>
+            </div>
+
+            <div id="end-game" class="hidden">
+                <h2>Results</h2>
+                <div id="results"></div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
